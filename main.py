@@ -6,7 +6,12 @@ pygame.init() # Initialises the behind the scene stuff
 size = (320, 240)
 red = (255, 0, 0)
 black = 0,0,0
-rectangle = pygame.Rect(20, 20, 20, 20)
+player1 = pygame.Surface((20,80))
+player2 = pygame.Surface((20,80))
+
+player1.fill((255,255,255))
+player2.fill((255,255,255))
+
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
 
@@ -19,6 +24,9 @@ while True:
         if event.type is pygame.QUIT:
             sys.exit()
     
-    screen.fill(black)    
-    pygame.draw.rect(screen, red, rectangle)
+    screen.fill(black)
+
+    screen.blit(player1, (20,50))
+    screen.blit(player2, (280,50))
+
     pygame.display.flip()
