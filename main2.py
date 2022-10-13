@@ -14,9 +14,12 @@ player1.fill((255,255,255))
 player2.fill((255,255,255))
 ball.fill((255,0,0))
 
-posx = 0
-posy = 0
+posx = 100
+posy = 50
 speed = [1,1]
+
+playerpos1 = [20, 50]
+playerpos2 = [280, 50]
 
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
@@ -47,6 +50,15 @@ while True:
     elif (posy > 220):
         speed[1] = -1
 
+    if playerpos1[0] + 20 > posx > playerpos1[0]:
+        speed[0] *= -1
+    if playerpos1[1] + 80 > posy > playerpos1[1]:
+        speed[1] *= -1
+
+    if playerpos2[0] + 20 > posx > playerpos2[0]:
+        speed[0] *= -1
+    if playerpos2[1] + 80 > posy > playerpos2[1]:
+        speed[1] *= -1
 
     screen.blit(ball, (posx, posy))
 
