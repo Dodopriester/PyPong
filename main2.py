@@ -32,11 +32,17 @@ while True:
     for event in pygame.event.get():
         if event.type is pygame.QUIT:
             sys.exit()
+
+        if event.type is pygame.KEYDOWN:
+            playerpos1[1] += 10
+        
+        if event.type is pygame.KEYDOWN:
+            playerpos1[1] -= 10
     
     screen.fill(black)
 
-    screen.blit(player1, (20,50))
-    screen.blit(player2, (280,50))
+    screen.blit(player1, playerpos1)
+    screen.blit(player2, playerpos2)
     posx += speed[0]
     posy += speed[1]
 
@@ -50,15 +56,15 @@ while True:
     elif (posy > 220):
         speed[1] = -1
 
-    if playerpos1[0] + 20 > posx > playerpos1[0]:
-        speed[0] *= -1
-    if playerpos1[1] + 80 > posy > playerpos1[1]:
-        speed[1] *= -1
 
-    if playerpos2[0] + 20 > posx > playerpos2[0]:
+    if playerpos1[0] < posx + 20 and playerpos1[0] + 20 > posx and playerpos1[1] < posy + 20 and playerpos1[1] + 80 > posy:
         speed[0] *= -1
-    if playerpos2[1] + 80 > posy > playerpos2[1]:
-        speed[1] *= -1
+
+
+
+    if playerpos2[0] < posx + 20 and playerpos2[0] + 20 > posx and playerpos2[1] < posy + 20 and playerpos2[1] + 80 > posy:
+        speed[0] *= -1
+
 
     screen.blit(ball, (posx, posy))
 
