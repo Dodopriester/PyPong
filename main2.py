@@ -1,5 +1,5 @@
 import sys, pygame
-from random import randint
+from random import randint, choice
 
 pygame.init() # Initialises the behind the scene stuff
 
@@ -24,7 +24,8 @@ playerpos2 = [280, 50]
 
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
-key_pressed = False
+
+collision_ignore = 30
 
 ''' Start the update loop '''
 while True:
@@ -55,16 +56,23 @@ while True:
     if (playerpos1[0] < posx + 20 and
     playerpos1[0] + 20 > posx and
     playerpos1[1] < posy + 20 and
-    playerpos1[1] + 80 > posy):
+    playerpos1[1] + 80 > posy and
+    collision_ignore == 0):
         speed[0] *= -1
         speed[1] = randint(-4,4)
+        collision_ignore = 30
 
     if (playerpos2[0] < posx + 20 and
     playerpos2[0] + 20 > posx and
     playerpos2[1] < posy + 20 and
-    playerpos2[1] + 80 > posy):
+    playerpos2[1] + 80 > posy and
+    collision_ignore == 0):
         speed[0] *= -1
         speed[1] = randint(-4,4)
+        collision_ignore = 30
+
+    if collision_ignore > 0:
+        collision_ignore -= 1
 
     screen.blit(ball, (posx, posy))
 
